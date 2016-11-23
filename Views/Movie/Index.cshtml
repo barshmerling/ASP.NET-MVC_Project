@@ -1,0 +1,76 @@
+﻿
+@model IEnumerable<FinalProjectMovies.Models.Movie>
+@{
+    ViewData["Title"] = "Movie";
+
+}
+
+<html>
+<body>
+    <h2 style="text-align:center">Movies</h2>
+
+    <form asp-controller="Movie" asp-action="Index1" method="post">
+        <div class="container" style="width:initial">
+            <div class="row" style="width:auto">
+                <div class="col-lg-3 col-md-6 col-md-offset-3 col-lg-offset-0">
+                    <div class="well" style="width:300px; height:320px; padding-top:2px; margin-left:120px">
+                        <h3 align="center" style="padding:0px">Search Filter</h3>
+                        <!--FORM DELETED-->
+                        <div class="form-group" style="align-content:center">
+                            <label class="control-label" style="padding-right:95px; padding-top:0px">Genre</label>
+                            <select class="form-control" name="Genre" id="Genre">
+                                <option value="Comedy">Comedy</option>
+                                <option value="Horror">Horror</option>
+                                <option value="Action">Action</option>
+                                <option value="Fantasy">Fantasy</option>
+                                <option value="Drama">Drama</option>
+                                <option value="Animation">Animation</option>
+                                <option value="War">War</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="padding-right:45px">
+                            <label for="Year" class="control-label" style="padding-right:75px; padding-top:0px">Year</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="Year" aria-describedby="basic-addon1" name="Year" style="width:230px">
+                            </div>
+                        </div>
+                        <div class="form-group" style="align-content:center">
+                            <label class="control-label" style="padding-right:95px; padding-top:0px">Rating</label>
+                            <select class="form-control" name="Rating" id="Rating">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <p class="text-center" style="padding:0px"><button type="submit" class="btn btn-danger glyphicon glyphicon-search" role="search"></button></p>
+                        <!--FORM DELETED-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <br>
+
+    <!--Pictues-->
+
+    @foreach (var item in Model)
+            {
+        <div class="moviePanel">
+            <a asp-action="Details" asp-route-id="@item.ID">
+                <div class="moviePoster">
+                    <img src="@item.PosterOfMovie" class="moviePoster" />
+                </div>
+            </a>
+        </div>
+    }
+
+
+    <br>
+    <br>
+
+</body>
+</html>

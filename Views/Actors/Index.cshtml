@@ -1,0 +1,54 @@
+@model IEnumerable<FinalProjectMovies.Models.Actor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Actors</h2>
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Equity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FamousMovie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Years)
+        </th>
+        <th></th>
+    </tr>
+    
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BirthDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Equity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FamousMovie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Years)
+        </td>
+    </tr>
+}
+</table>

@@ -1,0 +1,296 @@
+﻿@model IEnumerable<object>
+@{
+    ViewData["Title"] = "Manage Reviews";
+
+    List<Review> ListOfReview = Model.ToList()[0] as List<Review>;
+    List<Movie> ListOfMovies = Model.ToList()[1] as List<Movie>;
+    List<Actor> ListOfActors = Model.ToList()[2] as List<Actor>;
+    List<CinemaLocation> ListOfCinemaLocation = Model.ToList()[3] as List<CinemaLocation>;
+
+
+
+
+    //linQ GroupBy
+    var genre =
+    from a in ListOfMovies
+    group a by a.GenreOfMovie into g
+    select new { MovieGenre = g.Key, Count = g.Count() };
+
+
+    //Join Example
+    var jMovies =
+    (from i in ListOfMovies
+     join o in ListOfActors on i.NameOfMovie equals o.FamousMovie
+     select new { i.NameOfMovie, o.FullName, o.BirthDate, i.ReleaseYearOfMovie}).Distinct();
+}
+
+<!-- Contect And Main Contect -->
+<div id="content">
+    <div id="mainContent">
+
+        <h2>Review</h2>
+        <!--Review-->
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => ListOfReview[0].ReviewTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => ListOfReview[0].ReviewWriterName)
+                </th>
+                <th>
+            </tr>
+
+
+            @foreach (var item in ListOfReview)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReviewTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReviewWriterName)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a> |
+                        <a asp-action="ManageComments" asp-route-id="@item.ID">Manage Comments</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+        <!--ADDED NEW POST-->
+
+        <p>
+            <a asp-action="Create">Add New Review</a>
+        </p>
+
+        <!--Movies-->
+
+        <h2>Movies</h2>
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => ListOfMovies[0].GenreOfMovie)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => ListOfMovies[0].DirectorOfMovie)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => ListOfMovies[0].NameOfMovie)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => ListOfMovies[0].ReleaseYearOfMovie)
+                </th>
+                <th>
+            </tr>
+
+
+            @foreach (var item in ListOfMovies)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GenreOfMovie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DirectorOfMovie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NameOfMovie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReleaseYearOfMovie)
+                    </td>
+                    <td>
+                        <a asp-controller="Movie" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-controller="Movie" asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-controller="Movie" asp-action="Delete" asp-route-id="@item.ID">Delete</a> 
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+        <!--ADDED NEW Movie-->
+
+        <p>
+            <a asp-controller="Movie" asp-action="Create">Add New Movie</a>
+        </p>
+
+
+        <h2>Actors</h2>
+        <!--Review-->
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => ListOfActors[0].BirthDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => ListOfActors[0].FamousMovie)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => ListOfActors[0].FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => ListOfActors[0].Gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => ListOfActors[0].Years)
+                </th>
+                <th>
+            </tr>
+
+
+            @foreach (var item in ListOfActors)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BirthDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FamousMovie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Years)
+                    </td>
+
+                    <td>
+                        <a asp-controller="Actors" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-controller="Actors" asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-controller="Actors" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+
+        <p>
+            <a asp-controller="Actors" asp-action="Create">Add New Actor</a>
+        </p>
+
+
+        <h2>Cinema location</h2>
+        <!--Cinema location-->
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => ListOfCinemaLocation[0].CinemaName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => ListOfCinemaLocation[0].CinemaLatitude)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => ListOfCinemaLocation[0].CinemaLongitude)
+                </th>
+            </tr>
+
+
+            @foreach (var item in ListOfCinemaLocation)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CinemaName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CinemaLatitude)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CinemaLongitude)
+                    </td>
+                    <td>
+                        <a asp-controller="CinemaLocations" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-controller="CinemaLocations" asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-controller="CinemaLocations" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+
+        <p>
+            <a asp-controller="CinemaLocations" asp-action="Create">Add New Cinema Location</a>
+        </p>
+
+
+        <h2>Group example..</h2>
+        <!--Cinema location-->
+        <table class="table">
+            <tr>
+                <th>
+                 Genre
+                </th>
+                <th>
+                  How many movies
+                </th>
+            </tr>
+
+
+            @foreach (var item in genre.ToList())
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MovieGenre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Count)
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+
+        <h2>Join example..</h2>
+        <table class="table">
+            <tr>
+                <th>
+                    Movie's name
+                </th>
+                <th>
+                    Actor's name
+                </th>
+                <th>
+                    Actor's Birthday
+                </th>
+                <th>
+                    Release Year Of Movie
+                </th>
+            </tr>
+
+
+            @foreach (var item in jMovies.ToList())
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NameOfMovie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BirthDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReleaseYearOfMovie)
+                    </td>
+                </tr>
+            }
+
+        </table>
+        
+
+        <!--div of main contect-->
+    </div>
+</div>

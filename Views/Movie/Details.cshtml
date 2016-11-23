@@ -1,0 +1,61 @@
+﻿
+@model FinalProjectMovies.Models.Movie
+
+@{
+    ViewBag.Title = "Details";
+
+}
+
+<h2>Details</h2>
+<div>
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.PosterOfMovie)</dt>
+        <dd>
+            <img src="@Html.DisplayFor(model => model.PosterOfMovie)" style="width:150px; height: 200px" />
+        </dd>
+
+        <dt>@Html.DisplayNameFor(model => model.DirectorOfMovie)</dt>
+        <dd>@Html.DisplayFor(model => model.DirectorOfMovie)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.GenreOfMovie)</dt>
+        <dd>@Html.DisplayFor(model => model.GenreOfMovie)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.NameOfMovie)</dt>
+        <dd>@Html.DisplayFor(model => model.NameOfMovie)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.RatingOfMovie)</dt>
+        <dd>@Html.DisplayFor(model => model.RatingOfMovie)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.ReleaseYearOfMovie)</dt>
+        <dd>@Html.DisplayFor(model => model.ReleaseYearOfMovie)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.SummaryOfMovie)</dt>
+        <dd>@Html.DisplayFor(model => model.SummaryOfMovie)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.VideoOfMovie)</dt>
+        <dd><iframe width="250" height="180" src="@Html.DisplayFor(model => model.VideoOfMovie)"></iframe></dd>
+
+        <dt>@Html.DisplayNameFor(model => model.VotesOfMovie)</dt>
+        <dd>@Html.DisplayFor(model => model.VotesOfMovie)</dd>
+        <dt> Share to Facebook</dt>
+        <dd>
+            <div id="fb-root"></div>
+            <script>
+
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+            <div class="fb-like" data-href="https://www.facebook.com/CinemaPlanetWeb/timeline" data-width="40" data-layout="box_count" data-action="recommend" data-show-faces="true" data-share="true"></div>
+        </dd>
+    </dl>
+</div>
+
+
+<p>
+    <a asp-action="Index">Back to List</a>
+</p>

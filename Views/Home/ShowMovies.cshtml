@@ -1,0 +1,68 @@
+﻿@model FinalProjectMovies.Models.Movie
+
+@{
+    ViewData["Title"] = "Create";
+
+}
+<h2>Just Choose a Movie..</h2>
+
+<form asp-action="Create">
+
+
+    <div class="form-horizontal">
+        <h5>Insert A Movie Name And Press Enter</h5>
+        <hr />
+        <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+        <div style="width:100%">
+            <input class="form-control" id="searchNewMovie" onkeypress="searchMovie()" />
+
+            <br />
+
+            <div style="width:100%">
+
+                <div style="width:20%">
+                    Movie Poster:
+                    <img asp-for="PosterOfMovie" id="posterPath" />
+                </div>
+
+                    <div>
+                        Name:<br />
+                        <input asp-for="NameOfMovie" class="newMovieForm" id="movieName" />
+                        <span asp-validation-for="NameOfMovie" class="text-danger" />
+                    </div>
+                    <div>
+                        Year:<br />
+                        <input asp-for="ReleaseYearOfMovie" id="movieYear" />
+                        <span asp-validation-for="ReleaseYearOfMovie" class="text-danger" />
+                    </div>
+                <div>
+                    Actors:<br />
+                    <textarea asp-for="VideoOfMovie" id="movieActors"></textarea>
+                    <span asp-validation-for="VideoOfMovie" class="text-danger" />
+                </div>
+                    <div>
+                      Summary:<br />
+                        <textarea asp-for="SummaryOfMovie" id="movieSummery"></textarea>
+                        <span asp-validation-for="SummaryOfMovie" class="text-danger" />
+                    </div>
+                    <div>
+                        Director:<br />
+                        <input asp-for="DirectorOfMovie" id="movieDirector" />
+                        <span asp-validation-for="DirectorOfMovie" class="text-danger" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</form>
+
+
+@section Scripts {
+    <link rel="stylesheet" href="~/css/chosen.css" />
+    <script src="~/lib/chosen.jquery.js"></script>
+    <script>
+        $(function () {
+            $("select").chosen({});
+        });
+    </script>
+}

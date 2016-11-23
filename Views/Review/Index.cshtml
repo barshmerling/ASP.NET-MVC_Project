@@ -1,0 +1,99 @@
+﻿
+@model IEnumerable<object>
+@{
+    List<FinalProjectMovies.Models.Review> listOne = Model.ToList()[0] as List<FinalProjectMovies.Models.Review>;
+    List<FinalProjectMovies.Models.Comment> listTwo = Model.ToList()[1] as List<FinalProjectMovies.Models.Comment>;
+    ViewData["Title"] = "Index";
+}
+
+
+<html>
+<body>
+
+    <!-- Contect And Main Contect -->
+    <div id="content">
+        <div id="mainContent">
+
+
+            <!--Search for Review name-->
+
+            <form asp-controller="Review" asp-action="Index">
+                <p>
+                    <i class="glyphicon glyphicon-search"></i>
+                    Review Name: <input style="padding:10px" type="text" name="SearchString">
+                    <input style="margin-left:30px" type="submit" value="Search" />
+                </p>
+            </form>
+
+            <!--POST (from database)-->
+            @foreach (var item in listOne)
+            {
+
+
+                <div>
+                    <article class="blogPost">
+                        <header>
+                            <h2>@Html.DisplayFor(model => item.ReviewTitle)</h2>
+                            <p>
+                                Posted on <time>@Html.DisplayFor(modelItem => item.ReviewDate)</time> by
+                                <a href="http://@Html.DisplayFor(modelItem => item.ReviewDate)">@Html.DisplayFor(modelItem => item.ReviewWriterName)</a> - @Html.DisplayFor(modelItem => item.CommentList.Count) comments
+                            </p>
+                        </header>
+                        <div>
+                            <p>@Html.DisplayFor(modelItem => item.ReviewContent)</p>
+                            <p></p>
+                        </div>
+                    </article>
+
+
+
+                    <!--Comments (from database)-->
+                    <section id="@Html.DisplayFor(modelItem => item.ID)">
+                        <h3>Comments</h3>
+                        @foreach (var item1 in listTwo.Where(m => m.ReviewID == item.ID))
+                        {
+                            <div>
+                                <article>
+                                    <header>
+                                        <p>@Html.DisplayFor(modelItem => item1.CommentWriter)</p>
+                                    </header>
+                                    <p>@Html.DisplayFor(modelItem => item1.CommentContent)</p>
+                                </article>
+                            </div>
+                        }
+                    </section>
+
+
+                    <!--Comment-->
+                    <form action="/Review/CreateComment" method="post">
+                        <h3>Post a comment</h3>
+                        <p>
+                            <label for="name">Name</label>
+                            <input name="name" id="name" type="text" required />
+                        </p>
+                        <p>
+                            <label for="title">Title</label>
+                            <input name="title" id="title" type="text" required />
+                        </p>
+                     <!-- <p>
+                            <label for="website">Website</label>
+                            <input name="website" id="website" type="url" />
+                        </p> -->
+                        <p>
+                            <label for="comment">Comment</label>
+                            <textarea name="comment" id="comment" required></textarea>
+                        </p>
+                        <input type="hidden" value="@item.ID" name="ReviewId" />
+                        <p><input type="submit" value="Post Comment" /></p>
+                    </form>
+                </div>
+            }
+
+            <!--div of main contect-->
+        </div>
+    </div>
+
+
+
+</body>
+</html>

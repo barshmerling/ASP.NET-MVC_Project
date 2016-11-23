@@ -1,0 +1,58 @@
+﻿@model IEnumerable<FinalProjectMovies.Models.CinemaLocation>
+
+<head>
+    <title></title>
+    <style type="text/css">
+        #map-canvas {
+            width: 100%;
+            height: 520px;
+        }
+    </style>
+
+</head>
+
+<h1>Your Contact page</h1>
+<h3>Find the closer Cinema planet to your house.</h3>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script type="text/JavaScript">
+        function initialize() {
+            // Set initial location as Israel's center
+            var israelLatlng = new google.maps.LatLng(32.075548, 34.774229);
+            // Set map options
+            var mapOptions = {
+                zoom: 13,
+                center: israelLatlng,
+                zoomControl: true,
+                scaleControl: true,
+                streetViewControl: true,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            // Define map object in page
+            var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+            // Execute setMarkers function to populate map with markers from DB
+            setMarkers(map);
+        }
+
+        // This function iterates over Places table in DB and populates map with markers
+        function setMarkers(map) {
+
+            @foreach (var cinemaLocation in Model)
+        {
+            <text>
+            var myLatLng = new google.maps.LatLng('@cinemaLocation.CinemaLongitude', '@cinemaLocation.CinemaLatitude');
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                zIndex: @cinemaLocation.ID});
+            </text>
+        }
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+<body>
+    <div id="map-canvas"></div>
+</body>

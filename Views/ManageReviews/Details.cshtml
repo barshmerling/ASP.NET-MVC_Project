@@ -1,0 +1,28 @@
+﻿
+@model FinalProjectMovies.Models.Review
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<div>
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.ReviewTitle)</dt>
+        <dd>@Html.DisplayFor(model => model.ReviewTitle)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.ReviewDate)</dt>
+        <dd>@Html.DisplayFor(model => model.ReviewDate)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.ReviewWriterName)</dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReviewWriterName)
+        </dd>
+
+        <dt>@Html.DisplayNameFor(model => model.ReviewContent)</dt>
+        <dd>@Html.DisplayFor(model => model.ReviewContent)</dd>
+    </dl>
+</div>
+<p>
+    <a asp-action="Index">Back to List</a>
+</p>

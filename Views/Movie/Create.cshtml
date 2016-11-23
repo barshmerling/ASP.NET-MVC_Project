@@ -1,0 +1,99 @@
+﻿@model FinalProjectMovies.Models.Movie
+
+@{
+    ViewData["Title"] = "Create";
+
+}
+
+<h2>Create New Movie</h2>
+
+<form asp-action="Create">
+
+
+    <div class="form-horizontal">
+        
+        <hr />
+        <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+       
+         <div class="form-group">
+            <label asp-for="NameOfMovie" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="NameOfMovie" class="form-control" />
+                <span asp-validation-for="NameOfMovie" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PosterOfMovie" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PosterOfMovie" class="form-control" />
+                <span asp-validation-for="PosterOfMovie" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="RatingOfMovie" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="RatingOfMovie" class="form-control" />
+                <span asp-validation-for="RatingOfMovie" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReleaseYearOfMovie" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ReleaseYearOfMovie" class="form-control" />
+                <span asp-validation-for="ReleaseYearOfMovie" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="SummaryOfMovie" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="SummaryOfMovie" class="form-control" />
+                <span asp-validation-for="SummaryOfMovie" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="VideoOfMovie" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="VideoOfMovie" class="form-control" />
+                <span asp-validation-for="VideoOfMovie" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="VotesOfMovie" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="VotesOfMovie" class="form-control" />
+                <span asp-validation-for="VotesOfMovie" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="DirectorOfMovie" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="DirectorOfMovie" class="form-control" />
+                <span asp-validation-for="DirectorOfMovie" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="GenreOfMovie" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="GenreOfMovie" type="radio" name="GenreOfMovie" value="Comedy" id="Comedy" required />Comedy<br>
+                <input asp-for="GenreOfMovie" type="radio" name="GenreOfMovie" value="Action" id="Action" />Action<br>
+                <input asp-for="GenreOfMovie" type="radio" name="GenreOfMovie" value="Drama" id="Drama" />Drama<br>
+                <input asp-for="GenreOfMovie" type="radio" name="GenreOfMovie" value="Horror" id="Horror" />Horror<br>
+                <input asp-for="GenreOfMovie" type="radio" name="GenreOfMovie" value="Fantasy" id="Fantasy" />Fantasy<br>
+                <input asp-for="GenreOfMovie" type="radio" name="GenreOfMovie" value="Animation" id="Animation" />Animation<br>
+                <input asp-for="GenreOfMovie" type="radio" name="GenreOfMovie" value="War" id="War" />War
+                <span asp-validation-for="GenreOfMovie" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
